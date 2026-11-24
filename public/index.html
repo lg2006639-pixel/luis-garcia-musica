@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luis García — Descargador de Música Aleatoria del Mundo</title>
+  <meta name="description" content="Descubre, escucha y descarga música aleatoria de todo el mundo totalmente gratis en Luis García." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <!-- Fondo animado con orbes de colores llamativos -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+
+  <div class="app-shell">
+    <!-- Barra superior -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-disc" id="brandDisc" aria-hidden="true">
+          <div class="brand-disc-core"></div>
+        </div>
+        <div>
+          <h1 class="brand-title">Luis García</h1>
+          <p class="brand-subtitle">Música Aleatoria del Mundo • 100% Gratis</p>
+        </div>
+      </div>
+
+      <div class="header-stats">
+        <div class="stat-pill">
+          <span class="stat-dot"></span>
+          <span>Descubiertas: <strong id="discoveredCount">0</strong></span>
+        </div>
+        <div class="stat-pill stat-pill-gold">
+          <span>⬇️ Descargas: <strong id="downloadCount">0</strong></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sección Hero & Filtros -->
+    <section class="hero-card">
+      <div class="hero-copy">
+        <span class="free-badge">✨ GRATIS • SIN REGISTRO • MP3 DIRECTO</span>
+        <h2>Viaja por el mundo con <span class="gradient-text">un solo clic</span></h2>
+        <p>Elige una región o deja que el destino elija por ti. Escucha al instante y descarga música libre de todo el planeta.</p>
+      </div>
+
+      <div class="controls-panel">
+        <div class="filter-group">
+          <label class="filter-label">🌎 Elige una Región del Mundo</label>
+          <div class="region-pills" id="regionPills">
+            <!-- Generado dinámicamente -->
+          </div>
+        </div>
+
+        <div class="action-row">
+          <div class="genre-select-wrap">
+            <label for="genreSelect" class="filter-label">🎶 Estilo Musical</label>
+            <select id="genreSelect" class="genre-select">
+              <option value="all">Todos los Géneros</option>
+            </select>
+          </div>
+
+          <button id="surpriseBtn" class="btn-surprise">
+            <span class="btn-surprise-icon">🎲</span>
+            <span>¡Sorpréndeme con Música!</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reproductor Principal -->
+    <section class="player-section">
+      <div class="player-card" id="playerCard">
+        <div class="player-loading" id="playerLoading">
+          <div class="spinner"></div>
+          <p>Buscando una joya musical alrededor del mundo...</p>
+        </div>
+
+        <div class="player-content" id="playerContent">
+          <div class="cover-column">
+            <div class="vinyl-wrap" id="vinylWrap">
+              <img id="trackCover" src="" alt="Carátula de la canción" class="track-cover" />
+              <div class="vinyl-hole"></div>
+            </div>
+            <div class="visualizer" id="visualizer" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <div class="info-column">
+            <div class="track-badges">
+              <span class="badge badge-region" id="trackRegion">🌍 Todo el Mundo</span>
+              <span class="badge badge-genre" id="trackGenre">Música del Mundo</span>
+              <span class="badge badge-size" id="trackSize">MP3</span>
+            </div>
+
+            <h3 class="track-title" id="trackTitle">Presiona "¡Sorpréndeme!" para empezar</h3>
+            <p class="track-artist" id="trackArtist">Luis García • Radio Mundial Gratis</p>
+            <p class="track-license" id="trackLicense">Dominio Público / Creative Commons</p>
+
+            <!-- Barra de progreso -->
+            <div class="progress-area">
+              <span id="currentTime" class="time-label">0:00</span>
+              <input type="range" id="seekBar" class="seek-bar" min="0" max="100" value="0" aria-label="Progreso de la canción" />
+              <span id="totalTime" class="time-label">0:00</span>
+            </div>
+
+            <!-- Controles principales -->
+            <div class="player-actions">
+              <button id="playPauseBtn" class="btn-play" disabled>
+                <span id="playIcon">▶</span>
+                <span id="playText">Reproducir</span>
+              </button>
+
+              <a id="downloadBtn" href="#" class="btn-download disabled" aria-disabled="true">
+                <span>⬇️</span>
+                <span>Descargar MP3 Gratis</span>
+              </a>
+
+              <button id="favBtn" class="btn-icon" title="Guardar en favoritos" disabled>🤍</button>
+              <button id="nextBtn" class="btn-icon btn-next" title="Otra canción aleatoria">⏭️</button>
+            </div>
+
+            <div class="volume-row">
+              <span>🔊</span>
+              <input type="range" id="volumeBar" class="volume-bar" min="0" max="1" step="0.02" value="0.85" aria-label="Volumen" />
+              <a id="archiveLink" href="#" target="_blank" rel="noopener noreferrer" class="source-link" style="display:none;">Ver fuente libre ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Descubrimientos Rápidos -->
+    <section class="grid-section">
+      <div class="section-header">
+        <div>
+          <h3>🌟 Explora Más Canciones del Mundo</h3>
+          <p>Selección aleatoria lista para escuchar y descargar gratis</p>
+        </div>
+        <button id="refreshBatchBtn" class="btn-secondary">🔄 Mezclar Lista</button>
+      </div>
+
+      <div id="batchGrid" class="tracks-grid">
+        <!-- Tarjetas generadas por JS -->
+      </div>
+    </section>
+
+    <!-- Favoritos e Historial -->
+    <section class="library-section">
+      <div class="library-tabs">
+        <button class="tab-btn active" data-tab="history">🕒 Historial Reciente</button>
+        <button class="tab-btn" data-tab="favorites">❤️ Mis Favoritos (<span id="favCount">0</span>)</button>
+      </div>
+      <div id="libraryList" class="library-list">
+        <p class="empty-msg">Todavía no has descubierto canciones. ¡Toca "¡Sorpréndeme!" arriba!</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p><strong>Luis García</strong> — Descargador Gratuito de Música Aleatoria del Mundo</p>
+      <p class="footer-note">Toda la música proviene de archivos libres (Creative Commons y Dominio Público) vía Internet Archive.</p>
+    </footer>
+  </div>
+
+  <!-- Notificación flotante -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- Elemento de audio HTML5 -->
+  <audio id="audioPlayer" crossorigin="anonymous" preload="metadata"></audio>
+
+  <script src="/app.js"></script>
+</body>
+</html>
